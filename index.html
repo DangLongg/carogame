@@ -11,6 +11,18 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <style>
+#startScreen{
+    margin:20px;
+}
+
+#playerName{
+    padding:10px;
+    width:250px;
+    font-size:18px;
+    border-radius:10px;
+    border:none;
+    text-align:center;
+}
 
 *{
     margin:0;
@@ -178,7 +190,9 @@ button:hover{
 <div class="panel">
 
     <div class="card">
-        <h3>👤 DangLongdz😆</h3>
+        <span id="playerLabel">
+         👤 Người chơi
+         </span>
         <div class="score" id="playerScore">0</div>
     </div>
 
@@ -196,6 +210,25 @@ button:hover{
 
 <div id="status">
 Lượt của bạn (X)
+</div>
+
+<div id="startScreen">
+
+    <h2>🎮 CARO AI</h2>
+
+    <input
+        type="text"
+        id="playerName"
+        placeholder="Nhập tên của bạn..."
+        maxlength="20"
+    >
+
+    <br><br>
+
+    <button onclick="startGame()">
+        Bắt đầu
+    </button>
+
 </div>
 
 <div id="board"></div>
@@ -638,6 +671,32 @@ function drawGame(){
     "🤝 Hòa";
 }
 
+let tenNguoiChoi = "Player";
+
+function startGame(){
+
+    const input =
+    document.getElementById("playerName");
+
+    const ten =
+    input.value.trim();
+
+    if(ten !== ""){
+        tenNguoiChoi = ten;
+    }
+
+    document.getElementById(
+        "playerLabel"
+    ).textContent =
+    "👤 " + tenNguoiChoi;
+
+    document.getElementById(
+        "startScreen"
+    ).style.display = "none";
+
+    statusElement.textContent =
+    `${tenNguoiChoi} (X) vs Bot (O)`;
+}
 createBoard();
 </script>
 
